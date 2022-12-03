@@ -28,6 +28,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
+console.log(1);
+
 const allowedCors = [
   'http://anton.nomoredomains.club/',
   'localhost:3000',
