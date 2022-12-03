@@ -1,0 +1,21 @@
+.page-form__input {
+  border: 0;
+  padding: 0 0 7px 0;
+  color: #fff;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  width: 100%;
+  outline: none;
+  transition: 0.5s;
+  background-color: #000;
+  border-bottom: 2px solid
+    #cccccc;
+  margin-bottom: 30px;
+}
+
+.page-form__input::placeholder {
+  color: #cccccc;
+}
+
+
