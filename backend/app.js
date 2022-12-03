@@ -33,8 +33,9 @@ const allowedCors = [
   'localhost:3000',
 ];
 
-app.use((req, res) => {
+app.post((req, res) => {
   res.send({ req });
+  res.end();
 });
 
 app.use((req, res, next) => {
