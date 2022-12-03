@@ -35,7 +35,6 @@ const allowedCors = [
 
 app.use((req, res) => {
   res.send({ req });
-  res.end();
 });
 
 app.use((req, res, next) => {
