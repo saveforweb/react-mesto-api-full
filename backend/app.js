@@ -28,16 +28,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-console.log(1);
-
 const allowedCors = [
   'http://anton.nomoredomains.club/',
   'localhost:3000',
 ];
 
 app.use((req, res, next) => {
-  console.log(req);
-
   const { origin } = req.headers;
   if (allowedCors.includes(origin)) {
     res.header('Access-Control-Allow-Origin', origin);
