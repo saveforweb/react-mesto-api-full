@@ -13,8 +13,8 @@ const logger = expressWinston.logger({
 const { tokenString = 'dev-secret' } = process.env;
 
 module.exports = (req, res, next) => {
-  logger.info(req.baseUrl);
-  logger.info(req);
+  logger(req.baseUrl);
+  logger(req);
 
   const token = req.cookies.jwt;
 
