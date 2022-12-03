@@ -33,11 +33,6 @@ const allowedCors = [
   'localhost:3000',
 ];
 
-app.post((req, res) => {
-  res.send({ req });
-  res.end();
-});
-
 app.use((req, res, next) => {
   const { origin } = req.headers;
   if (allowedCors.includes(origin)) {
