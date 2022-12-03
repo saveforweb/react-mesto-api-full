@@ -28,6 +28,28 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
+const allowedCors = [
+  'http://anton.nomoredomains.club/',
+  'localhost:3000',
+];
+
+app.use((req, res, next) => {
+  const { origin } = req.headers;
+  if (allowedCors.includes(origin)) {
+    res.header('Access-Control-Allow-Origin', origin);
+  }
+
+  const { method } = req;
+
+  const requestHeaders = req.headers['access-control-request-headers'];
+
+  if (method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.end();
+  }
+  next();
+});
+
 app.post('/signin', celebrate({
   body: Joi.object().keys({
     email: Joi.string().email().required(),
