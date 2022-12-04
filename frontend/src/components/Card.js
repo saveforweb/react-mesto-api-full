@@ -17,6 +17,8 @@ function Card(props) {
         onCardDelete(card);
     }
 
+    console.log(currentUser._id);
+
     const isOwn = card.owner._id === currentUser._id;
     const cardDeleteButtonClassName = (
         `element__trash-button ${isOwn ? 'element__trash-button_visible' : 'element__trash-button_hidden'}`
