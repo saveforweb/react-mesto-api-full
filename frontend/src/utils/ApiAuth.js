@@ -1,4 +1,4 @@
-import { apiAuthConfig } from "./utils";
+import { apiConfig } from "./utils";
 
 class ApiAuth {
   constructor(options) {
@@ -52,4 +52,4 @@ class ApiAuth {
 
 }
 
-export default new ApiAuth(apiAuthConfig);
+export default new ApiAuth(apiConfig);
