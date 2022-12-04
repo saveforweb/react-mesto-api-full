@@ -4,7 +4,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
   const { onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards, onCardLike, onCardDelete } = props;
-  console.log(cards);
+  
   const currentUser = React.useContext(CurrentUserContext);
 
   const cardList = cards.map((card) => {

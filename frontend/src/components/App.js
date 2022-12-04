@@ -49,10 +49,8 @@ function App() {
     if (loggedIn) {
       api.getInitialCards()
         .then((result) => {
-          console.log(result);
           const { data } = result;
-          console.log(data);
-          setCards(result);
+          setCards(data);
         })
         .catch((result) => {
           console.log(result);
