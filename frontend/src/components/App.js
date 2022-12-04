@@ -154,7 +154,8 @@ function App() {
     setIsLoading(true);
     api.updateUserAvatar(link)
       .then((result) => {
-        setCurrentUser(result);
+        const { data } = result;
+        setCurrentUser(data);
         closeAllPopups()
       })
       .catch((result) => {
