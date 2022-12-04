@@ -50,6 +50,8 @@ function App() {
       api.getInitialCards()
         .then((result) => {
           console.log(result);
+          const { data } = result;
+          console.log(data);
           setCards(result);
         })
         .catch((result) => {
