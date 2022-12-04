@@ -138,8 +138,9 @@ function App() {
   function handleAddPlaceSubmit({ name, link }) {
     setIsLoading(true);
     api.addUserCard(name, link)
-      .then((newCard) => {
-        setCards([newCard, ...cards]);
+      .then((result) => {
+        const { data } = result;
+        setCards([data, ...cards]);
         closeAllPopups()
       })
       .catch((result) => {
