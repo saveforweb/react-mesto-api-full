@@ -23,11 +23,6 @@ function Card(props) {
     );
 
     const isLiked = card.likes.some(i => i._id === currentUser._id);
-    
-    console.log(card);
-    console.log(card.owner._id);
-    console.log(card.likes);
-    console.log(isLiked);
 
     const cardLikeButtonClassName = (
         `element__like-button ${isLiked ? 'element__like-button_cheked' : 'element__like-button_uncheked'}`
