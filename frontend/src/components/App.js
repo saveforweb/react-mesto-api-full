@@ -57,7 +57,8 @@ function App() {
         })
       api.getUserInfo()
         .then((result) => {
-          setCurrentUser(result);
+          const { data } = result;
+          setCurrentUser(data);
         })
         .catch((result) => {
           console.log(result);
