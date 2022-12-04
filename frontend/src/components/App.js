@@ -123,7 +123,8 @@ function App() {
     setIsLoading(true);
     api.updateUserInfo(name, about)
       .then((result) => {
-        setCurrentUser(result);
+        const { data } = result;
+        setCurrentUser(data);
         closeAllPopups()
       })
       .catch((result) => {
