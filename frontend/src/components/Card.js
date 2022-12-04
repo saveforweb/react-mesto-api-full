@@ -21,6 +21,8 @@ function Card(props) {
     
     console.log(currentUser._id);
 
+    console.log(card.owner);
+
     console.log(card.owner._id);
  
 
