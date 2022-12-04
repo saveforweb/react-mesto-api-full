@@ -31,6 +31,7 @@ app.use(requestLogger);
 const allowedCors = [
   'http://anton.nomoredomains.club/',
   'localhost:3000',
+  'http://localhost:3000',
 ];
 
 app.use((req, res, next) => {
