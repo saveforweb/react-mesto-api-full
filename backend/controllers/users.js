@@ -1,9 +1,10 @@
+const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const errorsList = require('../errors/index');
 
-const { tokenString = 'dev-secret' } = process.env;
+const tokenString = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
 
 module.exports.getUsers = (req, res, next) => {
   User.find({})
