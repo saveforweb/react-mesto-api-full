@@ -143,6 +143,7 @@ function App() {
       .then((result) => {
         console.log(result);
         const { data } = result;
+        console.log(data);
         setCards([data, ...cards]);
         closeAllPopups()
       })
