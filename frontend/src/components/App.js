@@ -69,6 +69,7 @@ function App() {
   );
 
   function handleCardLike(card) {
+    console.log(card);
 
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
@@ -83,6 +84,7 @@ function App() {
   }
 
   function handleCardDelete(card) {
+    console.log(card);
     api.deleleCard(card._id)
       .then(() => {
         setCards((state) => state.filter(c => c._id !== card._id));
