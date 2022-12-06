@@ -40,7 +40,8 @@ module.exports.deleteCard = (req, res, next) => {
         card.deleteOne()
           .then(() => {
             res.send({ data: card });
-          });
+          })
+          .catch(next);
       } else {
         next(new errorsList.ForbiddenError('Это не ваша карточка!'));
       }

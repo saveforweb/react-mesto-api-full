@@ -9,9 +9,7 @@ const tokenString = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
 module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((users) => res.send({ data: users }))
-    .catch((err) => {
-      next(err);
-    });
+    .catch(next);
 };
 
 const findUserById = (req, res, next, userId) => {
@@ -71,7 +69,6 @@ module.exports.updateInfoUser = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { name, about }, {
     new: true,
     runValidators: true,
-    upsert: false,
   })
     .then((user) => {
       if (user === null) {
@@ -97,7 +94,6 @@ module.exports.updateAvatarUser = (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, { avatar }, {
     new: true,
     runValidators: true,
-    upsert: false,
   })
     .then((user) => {
       if (user === null) {
@@ -124,7 +120,7 @@ module.exports.login = (req, res, next) => {
   User.findOne({ email }).select('+password')
     .then((user) => {
       if (!user) {
-        next(new errorsList.UnauthorizedError('Неправильные почта или пароль.'));
+        return next(new errorsList.UnauthorizedError('Неправильные почта или пароль.'));
       }
 
       userId = user._id;
@@ -133,7 +129,7 @@ module.exports.login = (req, res, next) => {
     })
     .then((matched) => {
       if (!matched) {
-        next(new errorsList.UnauthorizedError('Неправильные почта или пароль.'));
+        return next(new errorsList.UnauthorizedError('Неправильные почта или пароль.'));
       }
 
       const token = jwt.sign({ _id: userId }, tokenString, { expiresIn: '7d' });
