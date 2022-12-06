@@ -69,8 +69,7 @@ function App() {
   );
 
   function handleCardLike(card) {
-    console.log(card);
-
+    console.log({'id лайкнутой карточки': card._id});
     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
     api.changeLikeCardStatus(card._id, isLiked)
@@ -84,9 +83,10 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    console.log(card);
+    console.log({'id карточки': card._id});
     api.deleleCard(card._id)
-      .then(() => {
+      .then((result) => {
+        console.log({'ответ после удаления': result});
         setCards((state) => state.filter(c => c._id !== card._id));
       })
       .catch((result) => {
