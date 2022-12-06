@@ -51,6 +51,7 @@ function App() {
         .then((result) => {
           const { data } = result;
           const reverseData = data.reverse();
+          console.log({'ответ после удаления': reverseData}); 
           setCards(reverseData);
         })
         .catch((result) => {
@@ -86,7 +87,7 @@ function App() {
     console.log({'id карточки': card._id});
     api.deleleCard(card._id)
       .then((result) => {
-        console.log({'ответ после удаления': result});
+        console.log({'ответ после удаления': result});   
         setCards((state) => state.filter(c => c._id !== card._id));
       })
       .catch((result) => {
