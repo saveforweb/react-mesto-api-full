@@ -141,6 +141,7 @@ function App() {
     setIsLoading(true);
     api.addUserCard(name, link)
       .then((result) => {
+        console.log(result);
         const { data } = result;
         setCards([data, ...cards]);
         closeAllPopups()
