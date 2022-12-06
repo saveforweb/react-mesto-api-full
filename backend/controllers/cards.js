@@ -15,10 +15,10 @@ module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner })
-    .then((card) => {
-      Card.findById(card._id)
+    .then((result) => {
+      Card.findById(result._id)
         .populate(['owner', 'likes'])
-        .then(() => {
+        .then((card) => {
           res.send({ data: card });
         });
     })
