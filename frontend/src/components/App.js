@@ -50,8 +50,8 @@ function App() {
       api.getInitialCards()
         .then((result) => {
           const { data } = result;
-          console.log(data);
-          setCards(data);
+          const reverseData = data.reverse();
+          setCards(reverseData);
         })
         .catch((result) => {
           console.log(result);
