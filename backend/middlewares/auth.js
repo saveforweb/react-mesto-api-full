@@ -4,12 +4,16 @@ const errorsList = require('../errors/index');
 
 const tokenString = NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret';
 
-module.exports = (req, res, next) => {
-  const token = req.cookies.jwt;
+const extractBearerToken = (header) => header.replace('Bearer ', '');
 
-  if (!token) {
+module.exports = (req, res, next) => {
+  const { authorization } = req.headers;
+
+  if (!authorization || !authorization.startsWith('Bearer ')) {
     throw new errorsList.UnauthorizedError('Необходима авторизация.');
   }
+
+  const token = extractBearerToken(authorization);
 
   let payload;
 

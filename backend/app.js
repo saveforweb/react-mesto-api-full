@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { celebrate, Joi, errors } = require('celebrate');
 const bodyParser = require('body-parser');
 const { errorCodes } = require('./utils/errorCodes');
@@ -29,28 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
 
-const allowedCors = [
-  'http://anton.nomoredomains.club/',
-  'localhost:3000',
-  'http://localhost:3000',
-];
-
-app.use((req, res, next) => {
-  const { origin } = req.headers;
-  if (allowedCors.includes(origin)) {
-    res.header('Access-Control-Allow-Origin', origin);
-  }
-
-  const { method } = req;
-
-  const requestHeaders = req.headers['access-control-request-headers'];
-
-  if (method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Headers', requestHeaders);
-    res.end();
-  }
-  next();
-});
+app.use(cors());
 
 app.get('/crash-test', () => {
   setTimeout(() => {

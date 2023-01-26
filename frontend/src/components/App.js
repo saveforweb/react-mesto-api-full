@@ -8,12 +8,13 @@ import ImagePopup from "./ImagePopup";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
-import api from "../utils/Api";
 import apiAuth from "../utils/ApiAuth";
 import Login from "./Login";
 import Register from "./Register";
 import { ProtectedRoute } from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
+import { apiConfig } from "../utils/utils";
+import Api from "../utils/Api";
 
 function App() {
   const navigate = useNavigate();
@@ -29,14 +30,15 @@ function App() {
   const [isTooltipOpen, setIsTooltipOpen] = React.useState(false);
   const [contentTooltip, setContentTooltip] = React.useState({ text: '', icon: '' });
 
-  React.useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
+  const jwt = localStorage.getItem('jwt');
+  const api = new Api(apiConfig, jwt);
 
+  React.useEffect(() => {
     if (jwt) {
       apiAuth.checkToken(jwt)
         .then((result) => {
-          setCurrentUserEmail(result.data.email);
           setLoggedIn(true);
+          setCurrentUserEmail(result.data.email);
           navigate("/");
         })
         .catch((result) => {
@@ -65,8 +67,7 @@ function App() {
           console.log(result);
         })
     }
-  }, [loggedIn]
-  );
+  }, [loggedIn]);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -83,7 +84,7 @@ function App() {
 
   function handleCardDelete(card) {
     api.deleleCard(card._id)
-      .then((result) => { 
+      .then((result) => {
         setCards((state) => state.filter(c => c._id !== card._id));
       })
       .catch((result) => {

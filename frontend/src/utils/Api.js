@@ -1,9 +1,10 @@
-import { apiConfig } from "./utils";
-
 class Api {
-  constructor(options) {
+  constructor(options, jwt) {
     this._baseUrl = options.baseUrl;
-    this._headers = options.headers;
+    this._headers = {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${jwt}`
+    };
   }
 
   _checkResponse(res) {
@@ -85,4 +86,4 @@ class Api {
 
 }
 
-export default new Api(apiConfig);
+export default Api;

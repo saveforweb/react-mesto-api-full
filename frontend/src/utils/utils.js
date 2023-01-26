@@ -1,5 +1,5 @@
 export const apiConfig = {
-  baseUrl: "https://anton.nomoredomains.club/api",
+  baseUrl: 'http://anton.nomoredomains.club/api', 
   headers: {
     "Content-Type": "application/json",
   }
